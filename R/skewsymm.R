@@ -4,6 +4,8 @@
 #'
 #' @return B a list containing the symmetric and skew parts
 #'
+#' @export
+#'
 #' @examples
 #' A <- matrix(c(1,2,3,4), 2, 2)
 #' B <- skewsymm(A)
