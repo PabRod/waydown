@@ -22,9 +22,11 @@ test_that('Test at set of points',
                             c(1,1))
 
             # Compare
-            aux <- function (x) {numDeriv::grad(f_scalar, x)}
-            dfs_obtained <- lapply(xs_test, aux)
-            dfs_expected <- list(c(0, -2), c(6, -2))
+            dfs_obtained <- lapply(xs_test, numDeriv::grad, func = f_scalar)
+            dfs_expected <- list(
+                                  c(0, -2),
+                                  c(6, -2)
+                                  )
             expect_equal(dfs_obtained, dfs_expected)
           }
 )

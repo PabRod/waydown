@@ -32,8 +32,7 @@ test_that('Test at set of points',
                            c(pi,0))
 
             # Compare
-            aux <- function (x) {numDeriv::jacobian(f_vector, x)}
-            Js_obtained <- lapply(xs_test, aux)
+            Js_obtained <- lapply(xs_test, numDeriv::jacobian, func = f_vector)
             Js_expected <- list(
                                 matrix(c(0, 0, -2*pi, 0), nrow = 2, ncol = 2),
                                 matrix(c(2*pi, 0, 0, 0), nrow = 2, ncol = 2)
