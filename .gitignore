@@ -3,3 +3,10 @@
 .RData
 .Ruserdata
 *.Rproj
+
+*.out
+*.aux
+*.bbl
+*.bbg
+*.pdf
+/vignettes/libs
