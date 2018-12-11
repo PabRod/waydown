@@ -14,7 +14,7 @@ deltaV(f, x, x0)
 \item{x0}{Reference position (center of the Taylor expansion)}
 }
 \value{
-The approximate potential difference between x and x0
+A list containing the approximate potential difference between x and x0 and the estimated error
 }
 \description{
 Approximate potential difference between two points

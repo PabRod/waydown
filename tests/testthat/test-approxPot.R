@@ -39,9 +39,9 @@ test_that("2D exact", {
   Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
 
   # Approximated potential
-  Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
+  result <- approxPot2D(f, xs, ys, mode = 'horizontal')
 
   # Compare both
-  expect_equal(Vs, Vs_expected, tolerance = 2e-3)
-
+  expect_equal(result$V, Vs_expected, tolerance = 2e-3)
+  expect_equal(as.numeric(result$err), rep(0, length(result$err)), tolerance = 2e-6)
 })

@@ -23,7 +23,8 @@ approxPot1D <- function(f, xs, V0 = 0) {
 
   # Compute
   for(i in 2:length(xs)) {
-    V[i] = V[i-1] + deltaV(f, xs[i], xs[i-1])
+    temp <- deltaV(f, xs[i], xs[i-1])
+    V[i] = V[i-1] + temp$dV
   }
 
   return(V)
@@ -53,15 +54,20 @@ approxPot1D <- function(f, xs, V0 = 0) {
 approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
   # Initialize
   V <- matrix(0, nrow = length(xs), ncol = length(ys))
+  err <- matrix(0, nrow = length(xs), ncol = length(ys))
   V[1,1] <- V0
 
   # Compute
   for(i in 2:length(xs)) {
-    V[i,1] <- V[i-1,1] + deltaV(f, c(xs[i], ys[1]), c(xs[i-1], ys[1]) )
+    temp <- deltaV(f, c(xs[i], ys[1]), c(xs[i-1], ys[1]))
+    V[i,1] <- V[i-1,1] + temp$dV
+    err[i,1] <- temp$err
   }
 
   for(j in 2:length(ys)) {
-    V[1,j] <- V[1,j-1] + deltaV(f, c(xs[1], ys[j]), c(xs[1], ys[j-1]) )
+    temp <- deltaV(f, c(xs[1], ys[j]), c(xs[1], ys[j-1]))
+    V[1,j] <- V[1,j-1] + temp$dV
+    err[1,j] <- temp$err
   }
 
   for(i in 2:length(xs)) {
@@ -69,17 +75,24 @@ approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
 
       if(mode == 'horizontal') {
 
-        V[i,j] <- V[i-1,j] + deltaV(f, c(xs[i], ys[j]), c(xs[i-1], ys[j]) )
+        temp <- deltaV(f, c(xs[i], ys[j]), c(xs[i-1], ys[j]))
+        V[i,j] <- V[i-1,j] + temp$dV
+        err[i,j] <- temp$err
 
       } else if(mode == 'vertical') {
 
-        V[i,j] <- V[i,j-1] + deltaV(f, c(xs[i], ys[j]), c(xs[i], ys[j-1]) )
+        temp <- deltaV(f, c(xs[i], ys[j]), c(xs[i], ys[j-1]))
+        V[i,j] <- V[i,j-1] + temp$dV
+        err[i,j] <- temp$err
 
       } else if(mode == 'mixed') {
 
-        V_hor <- V[i-1,j] + deltaV(f, c(xs[i], ys[j]), c(xs[i-1], ys[j]) )
-        V_ver <- V[i,j-1] + deltaV(f, c(xs[i], ys[j]), c(xs[i], ys[j-1]) )
+        temp_hor <- deltaV(f, c(xs[i], ys[j]), c(xs[i-1], ys[j]))
+        V_hor <- V[i-1,j] + temp_hor[1]
+        temp_ver <- deltaV(f, c(xs[i], ys[j]), c(xs[i], ys[j-1]))
+        V_ver <- V[i,j-1] + temp_ver[1]
         V[i,j] <- mean(c(V_hor, V_ver))
+        err[i,j] <- temp$err
 
       } else {
 
@@ -89,5 +102,5 @@ approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
     }
   }
 
-  return(V)
+  return(list(V = V, err = err))
 }

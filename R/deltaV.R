@@ -4,7 +4,7 @@
 #' @param x0 Reference position (center of the Taylor expansion)
 #' @param f Dynamics
 #'
-#' @return The approximate potential difference between x and x0
+#' @return A list containing the approximate potential difference between x and x0 and the estimated error
 #' @export
 #'
 #' @examples
@@ -25,13 +25,20 @@ deltaV <- function(f, x, x0) {
   f0 <- f(x0)
   J0 <- numDeriv::jacobian(f, x0)
 
-  # Keep only the symmetric part
+  # Perform the skew/symmetric decomposition
   J_symm <- Matrix::symmpart(J0)
+  J_skew <- Matrix::skewpart(J0)
 
-  # Estimate the difference in potential
-  dV <- -f(x0) %*% (x - x0) +  # Linear term
+  # Use J_symm to estimate the difference in potential
+  dV <- as.numeric(
+        -f(x0) %*% (x - x0) +  # Linear term
         -0.5 * t(x-x0) %*% J_symm %*% (x - x0) # Quadratic term
+  )
 
-  # Return as numeric, not as 1 x 1 matrix
-  return(as.numeric(dV))
+  # Use J_skew to estimate the error
+  err <- norm(J_skew, type = 'f')
+
+  # Return
+  ls <- list(dV = dV, err = err)
+  return(ls)
 }
