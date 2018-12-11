@@ -11,3 +11,4 @@
 *.pdf
 /vignettes/libs
 playground/
+vignettes/examples_cache/

@@ -1,0 +1,103 @@
+---
+title: "Examples of usage"
+author: "Pablo Rodríguez-Sánchez"
+date: "`r Sys.Date()`"
+output: 
+  html_document: default
+  pdf_document:
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup, echo = FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(consRvative)
+```
+
+# One dimensional examples
+
+## Allee effect
+A single-species population dynamics model with Allee effect is governed by the following differential equation:
+
+$$
+\frac{dN}{dt} = r N \left( \frac{N}{A} - 1 \right) \left( 1 - \frac{N}{K} \right)
+$$
+
+It is easy to see that this differential equation has three equilibrium points, $N = 0$, $N = K$ and $N = A$, being all of them stable but the latter one, which is unstable. We'll use the parameters $r = 1$, $A = 0.5$ and $K = 1$.
+
+```{r Allee-def}
+r <- 1
+A <- 0.5
+K <- 1
+
+f <- function(x) { r * x * (x/A - 1) * (1 - x/K) }
+```
+
+We can use our method `approxPot1D` to approximate the potential function at a set of points. First, we have to create the points. 
+
+```{r Allee-points}
+xs <- seq(0, 1.25, by = 0.01)
+```
+
+and then pass them to our algorithm:
+
+```{r Allee-algorithm, cache = FALSE}
+Vs <- approxPot1D(f, xs)
+```
+
+By plotting the result, we clearly see that the two stable equilibria appear at $N = 0$ and $N = K = 1$, and the unstable one at $N = A = 0.5$, as we expected.
+
+```{r Allee-plot}
+plot(xs, Vs, 
+     type = 'l', xlab = 'N', ylab = 'V')
+```
+
+# Two dimensional examples
+
+## Four well potential
+In this section we'll deal with the two-dimensional differential equation given by:
+
+$$
+\begin{cases}
+\frac{dx}{dt} = f(x,y) = -x(x^2-1) \\
+\frac{dy}{dt} = g(x,y) = -y(y^2-1)
+\end{cases}
+$$
+
+It is important to remember that we'll code the function's input as a vector:
+
+```{r Four-def}
+f <- function(x) {c(-x[1]*(x[1]^2 - 1), 
+                    -x[2]*(x[2]^2 - 1))}
+```
+
+Our region of interest is now two-dimensional. We need, thus, two vectors to create our grid of points:
+
+```{r Four-points}
+xs <- seq(-1.5, 1.5, by = 0.05)
+ys <- seq(-1.5, 1.5, by = 0.05)
+```
+
+Now we are ready to apply `approxPot2D`:
+
+```{r Four-algorithm, cache = FALSE}
+result <- approxPot2D(f, xs, ys)
+```
+
+`result` is a list that contains two fields:
+- `result$V` contains the estimated values of the potentials at each grid point
+- `result$err` contains the estimated error at each grid point
+
+```{r Four-plot}
+contour(xs, ys, result$V, 
+        xlab = 'x', ylab = 'y', asp = 1)
+```
+
+Provided our example is a gradient system, we expect our error to be zero.
+
+```{r Four-error}
+max(result$err)
+```
