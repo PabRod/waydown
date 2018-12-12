@@ -4,7 +4,7 @@
 \alias{approxPot2D}
 \title{Approximate potential in 1D}
 \usage{
-approxPot2D(f, xs, ys, V0 = 0, mode = "horizontal")
+approxPot2D(f, xs, ys, V0 = "auto", mode = "horizontal")
 }
 \arguments{
 \item{f}{Dynamics}
@@ -13,7 +13,7 @@ approxPot2D(f, xs, ys, V0 = 0, mode = "horizontal")
 
 \item{ys}{Vector of ys positions to evaluate}
 
-\item{V0}{(Optional) Value of V at first element of (xs,ys) (0 by default)}
+\item{V0}{(Optional) Value of V at first element of (xs,ys). When default, the global minimum is assigned 0}
 
 \item{mode}{(Optional) Integration mode. Options are horizontal (default), vertical and mixed}
 }

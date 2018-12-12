@@ -2,7 +2,7 @@
 #'
 #' @param f Dynamics
 #' @param xs Vector of positions to evaluate
-#' @param V0 (Optional) Value of V at first element of xs (0 by default)
+#' @param V0 (Optional) Value of V at first element of xs. When default, the global minimum is assigned 0
 #'
 #' @return The potential estimated at each point in xs
 #' @export
@@ -16,15 +16,23 @@
 #'
 #' # Approximated potential
 #' Vs <- approxPot1D(f, xs)
-approxPot1D <- function(f, xs, V0 = 0) {
+approxPot1D <- function(f, xs, V0 = 'auto') {
   # Initialize
   V <- vector(mode="numeric", length = length(xs))
-  V[1] <- V0
+  if (V0 == 'auto') {
+    V[1] <- 0
+  } else {
+    V[1] <- V0
+  }
 
   # Compute
   for(i in 2:length(xs)) {
     temp <- deltaV(f, xs[i], xs[i-1])
     V[i] = V[i-1] + temp$dV
+  }
+
+  if(V0 == 'auto') {
+    V <- V - min(V)
   }
 
   return(V)
@@ -35,7 +43,7 @@ approxPot1D <- function(f, xs, V0 = 0) {
 #' @param f Dynamics
 #' @param xs Vector xs positions to evaluate
 #' @param ys Vector of ys positions to evaluate
-#' @param V0 (Optional) Value of V at first element of (xs,ys) (0 by default)
+#' @param V0 (Optional) Value of V at first element of (xs,ys). When default, the global minimum is assigned 0
 #' @param mode (Optional) Integration mode. Options are horizontal (default), vertical and mixed
 #'
 #' @return The potential estimated at each point (xs, ys)
@@ -51,11 +59,16 @@ approxPot1D <- function(f, xs, V0 = 0) {
 #'
 #' # Approximated potential
 #' Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
-approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
+approxPot2D <- function(f, xs, ys, V0 = 'auto', mode = 'horizontal') {
   # Initialize
   V <- matrix(0, nrow = length(xs), ncol = length(ys))
   err <- matrix(0, nrow = length(xs), ncol = length(ys))
-  V[1,1] <- V0
+
+  if (V0 == 'auto') {
+    V[1,1] <- 0
+  } else {
+    V[1,1] <- V0
+  }
 
   # Compute
   for(i in 2:length(xs)) {
@@ -100,6 +113,10 @@ approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
 
       }
     }
+  }
+
+  if(V0 == 'auto') {
+    V <- V - min(c(V))
   }
 
   return(list(V = V, err = err))

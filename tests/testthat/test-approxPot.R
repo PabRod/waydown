@@ -11,10 +11,28 @@ test_that("1D", {
   Vs_expected <- function(x) { cos(x) - cos(xs[1]) }
 
   # Approximated potential
-  Vs <- approxPot1D(f, xs)
+  Vs <- approxPot1D(f, xs, V0 = 0)
 
   # Compare both
   expect_equal(Vs, Vs_expected(xs), tolerance = 1e-4)
+
+})
+
+test_that("1D auto", {
+  # Flow
+  f = function(x) { sin(x) }
+
+  # Sampling points
+  xs <- seq(0, 2*pi, length.out = 1e2)
+
+  # Expected, exact potential
+  Vs_expected <- function(x) { cos(x) - cos(xs[1]) }
+
+  # Approximated potential
+  Vs <- approxPot1D(f, xs, V0 = 'auto')
+
+  # Compare both
+  expect_equal(0, min(Vs))
 
 })
 
@@ -39,7 +57,7 @@ test_that("2D exact horizontal", {
   Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
 
   # Approximated potential
-  result <- approxPot2D(f, xs, ys, mode = 'horizontal')
+  result <- approxPot2D(f, xs, ys, V0 = 0, mode = 'horizontal')
 
   # Compare both
   expect_equal(result$V, Vs_expected, tolerance = 2e-3)
@@ -67,7 +85,7 @@ test_that("2D exact vertical", {
   Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
 
   # Approximated potential
-  result <- approxPot2D(f, xs, ys, mode = 'vertical')
+  result <- approxPot2D(f, xs, ys, V0 = 0, mode = 'vertical')
 
   # Compare both
   expect_equal(result$V, Vs_expected, tolerance = 2e-3)
@@ -95,7 +113,7 @@ test_that("2D exact mixed", {
   Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
 
   # Approximated potential
-  result <- approxPot2D(f, xs, ys, mode = 'mixed')
+  result <- approxPot2D(f, xs, ys, V0 = 0, mode = 'mixed')
 
   # Compare both
   expect_equal(result$V, Vs_expected, tolerance = 2e-3)
@@ -112,6 +130,21 @@ test_that("2D wrong mode", {
 
   # Approximated potential
   expect_error(
-    result <- approxPot2D(f, xs, ys, mode = 'wrong')
+    result <- approxPot2D(f, xs, ys, V0 = 0, mode = 'wrong')
   )
+})
+
+test_that("2D auto", {
+  # Flow
+  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+
+  # Sampling points
+  xs <- seq(-1.5, 1.5, length.out = 50)
+  ys <- seq(-1.5, 1.5, length.out = 75)
+
+  # Approximated potential
+  result <- approxPot2D(f, xs, ys, V0 = 'auto')
+
+  expect_equal(min(c(result$V)), 0)
+
 })

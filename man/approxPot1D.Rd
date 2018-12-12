@@ -4,14 +4,14 @@
 \alias{approxPot1D}
 \title{Approximate potential in 1D}
 \usage{
-approxPot1D(f, xs, V0 = 0)
+approxPot1D(f, xs, V0 = "auto")
 }
 \arguments{
 \item{f}{Dynamics}
 
 \item{xs}{Vector of positions to evaluate}
 
-\item{V0}{(Optional) Value of V at first element of xs (0 by default)}
+\item{V0}{(Optional) Value of V at first element of xs. When default, the global minimum is assigned 0}
 }
 \value{
 The potential estimated at each point in xs
