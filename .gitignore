@@ -9,6 +9,7 @@
 *.bbl
 *.bbg
 *.pdf
-/vignettes/libs
+
+vignettes/libs
 playground/
 vignettes/examples_cache/
