@@ -2,13 +2,27 @@
 #'
 #' @param x Position where we want to know the approximate potential
 #' @param x0 Reference position (center of the Taylor expansion)
-#' @param f Dynamics
+#' @param f Flow equations (right hand side of differential equation)
 #'
 #' @return A list containing the approximate potential difference between x and x0 and the estimated error
 #' @export
 #'
+#' @author Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
+#'
+#'
+#' @seealso \code{\link{approxPot1D}, \link{approxPot2D}}
+#'
 #' @examples
-#'  # Flow
+#' # One dimensional flow
+#' f <- function(x) { cos(x) }
+#'
+#' # Evaluation points
+#' x0 <- 1
+#' x1 <- 1.02
+#'
+#' dV <- deltaV(f, x1, x0)
+#'
+#'  # Two dimensional flow
 #' f <- function(x) { c(
 #'  -2*x[1]*x[2],
 #'  -x[1]^2 - 1

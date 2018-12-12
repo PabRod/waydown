@@ -2,12 +2,12 @@
 % Please edit documentation in R/approxPot.R
 \name{approxPot1D}
 \alias{approxPot1D}
-\title{Approximate potential in 1D}
+\title{Approximate potential in one dimension}
 \usage{
 approxPot1D(f, xs, V0 = "auto")
 }
 \arguments{
-\item{f}{Dynamics}
+\item{f}{One-dimensional representing the flow (right hand side of differential equation)}
 
 \item{xs}{Vector of positions to evaluate}
 
@@ -17,7 +17,7 @@ approxPot1D(f, xs, V0 = "auto")
 The potential estimated at each point in xs
 }
 \description{
-Approximate potential in 1D
+Approximate potential in one dimension
 }
 \examples{
 # Flow
@@ -28,4 +28,10 @@ xs <- seq(0, 2*pi, length.out = 1e3)
 
 # Approximated potential
 Vs <- approxPot1D(f, xs)
+}
+\seealso{
+\code{\link{approxPot2D}, \link{deltaV}}
+}
+\author{
+Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
 }

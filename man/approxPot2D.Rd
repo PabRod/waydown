@@ -2,12 +2,12 @@
 % Please edit documentation in R/approxPot.R
 \name{approxPot2D}
 \alias{approxPot2D}
-\title{Approximate potential in 1D}
+\title{Approximate potential in two dimensions}
 \usage{
 approxPot2D(f, xs, ys, V0 = "auto", mode = "horizontal")
 }
 \arguments{
-\item{f}{Dynamics}
+\item{f}{Two-dimensional representing the flow (right hand side of differential equation)}
 
 \item{xs}{Vector xs positions to evaluate}
 
@@ -21,7 +21,7 @@ approxPot2D(f, xs, ys, V0 = "auto", mode = "horizontal")
 The potential estimated at each point (xs, ys)
 }
 \description{
-Approximate potential in 1D
+Approximate potential in two dimensions
 }
 \examples{
 # Flow
@@ -33,4 +33,10 @@ ys <- seq(-1.5, 1.5, length.out = 15)
 
 # Approximated potential
 Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
+}
+\seealso{
+\code{\link{approxPot1D}, \link{deltaV}}
+}
+\author{
+Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
 }

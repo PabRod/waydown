@@ -7,7 +7,7 @@
 deltaV(f, x, x0)
 }
 \arguments{
-\item{f}{Dynamics}
+\item{f}{Flow equations (right hand side of differential equation)}
 
 \item{x}{Position where we want to know the approximate potential}
 
@@ -20,7 +20,16 @@ A list containing the approximate potential difference between x and x0 and the 
 Approximate potential difference between two points
 }
 \examples{
- # Flow
+# One dimensional flow
+f <- function(x) { cos(x) }
+
+# Evaluation points
+x0 <- 1
+x1 <- 1.02
+
+dV <- deltaV(f, x1, x0)
+
+ # Two dimensional flow
 f <- function(x) { c(
  -2*x[1]*x[2],
  -x[1]^2 - 1
@@ -31,4 +40,10 @@ x0 <- matrix(c(1,2), ncol = 1)
 x1 <- matrix(c(0.98,2.01), ncol = 1)
 
 dV <- deltaV(f, x1, x0)
+}
+\seealso{
+\code{\link{approxPot1D}, \link{approxPot2D}}
+}
+\author{
+Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
 }
