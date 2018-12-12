@@ -5,4 +5,4 @@
 
 ## Installation
 
-Just type `devtools::install_github("PabRod/consRvative")` in your `R` command console.
+Just type `devtools::install_github("PabRod/consRvative", ref = "develop")` in your `R` command console.

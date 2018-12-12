@@ -18,6 +18,15 @@ library(consRvative)
 library(latticeExtra)
 ```
 
+# Installation
+To install the package, please type
+
+```
+devtools::install_github("PabRod/consRvative", ref = "develop")
+```
+
+in your _R_ console.
+
 # One dimensional examples
 
 ## Allee effect
