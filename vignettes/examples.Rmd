@@ -3,8 +3,8 @@ title: "Examples of usage"
 author: "Pablo Rodríguez-Sánchez"
 date: "`r Sys.Date()`"
 output: 
-  html_document: default
   pdf_document:
+  html_document: default
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEncoding{UTF-8}
@@ -95,8 +95,9 @@ result <- approxPot2D(f, xs, ys)
 ```
 
 `result` is a list that contains two fields:
-- `result$V` contains the estimated values of the potentials at each grid point
-- `result$err` contains the estimated error at each grid point
+
+* `result$V` contains the estimated values of the potentials at each grid point
+* `result$err` contains the estimated error at each grid point
 
 ```{r Four-plot}
 filled.contour(xs, ys, result$V, 
