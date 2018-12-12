@@ -15,6 +15,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 
 library(consRvative)
+library(latticeExtra)
 ```
 
 # One dimensional examples
@@ -44,7 +45,7 @@ xs <- seq(0, 1.25, by = 0.01)
 
 and then pass them to our algorithm:
 
-```{r Allee-algorithm, cache = FALSE}
+```{r Allee-algorithm, cache = TRUE}
 Vs <- approxPot1D(f, xs)
 ```
 
@@ -67,6 +68,12 @@ $$
 \end{cases}
 $$
 
+This is a gradient system, that can be derived from the potential:
+
+$$
+V(x,y) = \frac{x^2}{4}(x^2 - 2) + \frac{y^2}{4}(y^2 - 2) + V_0
+$$
+
 It is important to remember that we'll code the function's input as a vector:
 
 ```{r Four-def}
@@ -83,7 +90,7 @@ ys <- seq(-1.5, 1.5, by = 0.05)
 
 Now we are ready to apply `approxPot2D`:
 
-```{r Four-algorithm, cache = FALSE}
+```{r Four-algorithm, cache = TRUE}
 result <- approxPot2D(f, xs, ys)
 ```
 
@@ -92,12 +99,87 @@ result <- approxPot2D(f, xs, ys)
 - `result$err` contains the estimated error at each grid point
 
 ```{r Four-plot}
-contour(xs, ys, result$V, 
-        xlab = 'x', ylab = 'y', asp = 1)
+filled.contour(xs, ys, result$V, 
+        color=gray.colors, asp = 1,
+        main = 'Approximate potential', xlab = 'x', ylab = 'y')
 ```
 
-Provided our example is a gradient system, we expect our error to be zero.
+```{r Four-plot-lattice, echo = FALSE, eval = FALSE}
+data <- expand.grid(xs, ys)
+data$Z <- c(result$V)
+names(data) <- c('X', 'Y', 'Z')
+
+levelplot(Z  ~ X*Y, data = data, 
+          contour = TRUE, col.regions = gray.colors, asp = 1,
+          xlab = 'x', ylab = 'y', main = 'Approximate potential')
+```
+
+Provided our example is a gradient system, we expect our approximation error to be zero everywhere.
 
 ```{r Four-error}
 max(result$err)
 ```
+
+## Simple regulatory gene network
+A bistable network model can be described by a set of equations of the form:
+
+$$
+\begin{cases}
+  \frac{dx}{dt} = f(x,y) = b_x - r_x x + \frac{a_x}{k_x + y^n} \\
+  \frac{dy}{dt} = g(x,y) = b_y - r_y y + \frac{a_y}{k_y + x^n}
+\end{cases}
+$$
+We can code it in vector form:
+
+```{r Wadd-def}
+# Parameters
+bx <- 0.2
+ax <- 0.125
+kx <- 0.0625
+rx <- 1
+
+by <- 0.05
+ay <- 0.1094
+ky <- 0.0625
+ry <- 1
+
+n <- 4
+
+# Dynamics
+f <- function(x) {c(bx - rx*x[1] + ax/(kx + x[2]^n), 
+                    by - ry*x[2] + ay/(ky + x[1]^n))}
+```
+
+This set of equations is, in general, not gradient (because $\frac{\partial f}{\partial y} \neq \frac{\partial g}{\partial x}$). Anyways, we can use the method `approxPot2D` to compute the approximate potential.
+
+First, we need to define our region of interest:
+
+```{r Wadd-points}
+xs <- seq(0, 4, by = 0.05)
+ys <- seq(0, 4, by = 0.05)
+```
+
+And then we are ready to apply our algorithm:
+
+```{r Wadd-algorithm, cache = TRUE}
+result <- approxPot2D(f, xs, ys)
+```
+
+The resulting approximate potential looks like:
+
+```{r Wadd-plot}
+filled.contour(xs, ys, result$V, 
+        levels = seq(-4,8, by = 0.25),
+        color = colorRamps::matlab.like, asp = 1,
+        main = 'Approximate potential', xlab = 'x', ylab = 'y')
+
+```
+
+Being this not a gradient system it is advisable to plot the estimated error. The areas in green represent small approximation error, so the potential can be safely used in those regions.
+
+```{r Wadd-err}
+filled.contour(xs, ys, result$err, 
+        color = colorRamps::green2red, asp = 1,
+        main = 'Approximation error', xlab = 'x', ylab = 'y')
+```
+
