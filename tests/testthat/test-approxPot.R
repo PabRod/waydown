@@ -18,7 +18,7 @@ test_that("1D", {
 
 })
 
-test_that("2D exact", {
+test_that("2D exact horizontal", {
   # Flow
   f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
@@ -44,4 +44,74 @@ test_that("2D exact", {
   # Compare both
   expect_equal(result$V, Vs_expected, tolerance = 2e-3)
   expect_equal(as.numeric(result$err), rep(0, length(result$err)), tolerance = 2e-6)
+})
+
+test_that("2D exact vertical", {
+  # Flow
+  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+
+  # Sampling points
+  xs <- seq(-1.5, 1.5, length.out = 125)
+  ys <- seq(-1.5, 1.5, length.out = 120)
+
+  # Expected, exact potential
+  Vs_exact <- function(x, y) { x^2/4*(x^2 - 2*1.1) + y^2/4*(y^2 - 2*1) }
+
+  # Evaluate exact potential
+  Vs_expected <- matrix(0, nrow = length(xs), ncol = length(ys))
+  for(i in 1:length(xs)) {
+    for(j in 1:length(ys)) {
+      Vs_expected[i,j] <- Vs_exact(xs[i], ys[j])
+    }
+  }
+  Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
+
+  # Approximated potential
+  result <- approxPot2D(f, xs, ys, mode = 'vertical')
+
+  # Compare both
+  expect_equal(result$V, Vs_expected, tolerance = 2e-3)
+  expect_equal(as.numeric(result$err), rep(0, length(result$err)), tolerance = 2e-6)
+})
+
+test_that("2D exact mixed", {
+  # Flow
+  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+
+  # Sampling points
+  xs <- seq(-1.5, 1.5, length.out = 125)
+  ys <- seq(-1.5, 1.5, length.out = 120)
+
+  # Expected, exact potential
+  Vs_exact <- function(x, y) { x^2/4*(x^2 - 2*1.1) + y^2/4*(y^2 - 2*1) }
+
+  # Evaluate exact potential
+  Vs_expected <- matrix(0, nrow = length(xs), ncol = length(ys))
+  for(i in 1:length(xs)) {
+    for(j in 1:length(ys)) {
+      Vs_expected[i,j] <- Vs_exact(xs[i], ys[j])
+    }
+  }
+  Vs_expected <- Vs_expected - Vs_exact(xs[1], ys[1])
+
+  # Approximated potential
+  result <- approxPot2D(f, xs, ys, mode = 'mixed')
+
+  # Compare both
+  expect_equal(result$V, Vs_expected, tolerance = 2e-3)
+  expect_equal(as.numeric(result$err), rep(0, length(result$err)), tolerance = 2e-6)
+})
+
+test_that("2D wrong mode", {
+  # Flow
+  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+
+  # Sampling points
+  xs <- seq(-1.5, 1.5, length.out = 125)
+  ys <- seq(-1.5, 1.5, length.out = 120)
+
+  # Approximated potential
+  expect_error(
+    result <- approxPot2D(f, xs, ys, mode = 'wrong')
+  )
 })

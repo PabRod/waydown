@@ -88,11 +88,11 @@ approxPot2D <- function(f, xs, ys, V0 = 0, mode = 'horizontal') {
       } else if(mode == 'mixed') {
 
         temp_hor <- deltaV(f, c(xs[i], ys[j]), c(xs[i-1], ys[j]))
-        V_hor <- V[i-1,j] + temp_hor[1]
+        V_hor <- V[i-1,j] + temp_hor$dV
         temp_ver <- deltaV(f, c(xs[i], ys[j]), c(xs[i], ys[j-1]))
-        V_ver <- V[i,j-1] + temp_ver[1]
+        V_ver <- V[i,j-1] + temp_ver$dV
         V[i,j] <- mean(c(V_hor, V_ver))
-        err[i,j] <- temp$err
+        err[i,j] <- mean(c(temp_hor$err, temp_ver$err))
 
       } else {
 
