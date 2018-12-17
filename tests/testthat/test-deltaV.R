@@ -72,5 +72,5 @@ test_that("2D curl", {
   results <- deltaV(f, x1, x0)
 
   # Compare with expected result
-  expect_equal(results$err, sqrt(2), tolerance = 1e-6)
+  expect_equal(results$err, 1, tolerance = 1e-6)
 })

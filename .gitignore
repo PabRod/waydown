@@ -13,3 +13,5 @@
 vignettes/libs
 playground/
 vignettes/examples_cache/
+vignettes/assets/
+*.blg

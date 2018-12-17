@@ -50,9 +50,10 @@ deltaV <- function(f, x, x0) {
   )
 
   # Use J_skew to estimate the error
-  err <- norm(J_skew, type = 'f')
+  normType <- 'f'
+  rel_err <- norm(J_skew, type = normType)/(norm(J_skew, type = normType) + norm(J_symm, type = normType))
 
   # Return
-  ls <- list(dV = dV, err = err)
+  ls <- list(dV = dV, err = rel_err)
   return(ls)
 }
