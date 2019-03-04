@@ -18,6 +18,10 @@ library(consRvative)
 library(latticeExtra)
 ```
 
+```{r logo, echo=FALSE, fig.height=8.5, fig.pos="H", fig.align='center'}
+knitr::include_graphics('img/logo.png')
+```
+
 # Installation
 To install the package, please type
 
