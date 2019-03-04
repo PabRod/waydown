@@ -18,6 +18,9 @@ Type `devtools::install_github("PabRod/consRvative", ref = "develop")` in your `
 ### Running the tests
 The integrity of this package can be checked by running the battery of tests available at `./tests`.
 
+### Examples of usage
+A vignette with examples of usage can be found in [vignettes/examples.pdf](inst/doc/examples.pdf)
+
 ## Authors
 - [Pablo Rodríguez-Sánchez](https://pabrod.github.io)
 

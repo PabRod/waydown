@@ -8,10 +8,10 @@
 *.aux
 *.bbl
 *.bbg
-*.pdf
 
 vignettes/libs
 playground/
-vignettes/examples_cache/
+*_files
+*_cache
 vignettes/assets/
 *.blg
