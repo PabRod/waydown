@@ -84,20 +84,20 @@ plotResults <- function(xs, ys, result, aspect = 1)
   dataV <- expand.grid(X = xs, Y = ys)
   dataV$Z <- as.vector(result$V)
 
-  # Do the same for the error
-  dataErr <- expand.grid(X = xs, Y = ys)
-  dataErr$Z <- as.vector(result$err)
-
-  # Generate the potential plot...
+  # And generate the potential plot...
   plotV <- levelplot(Z ~ X*Y, data = dataV, scales = list(draw = TRUE), 
                    col.regions = colorRamps::matlab.like,
                    aspect = aspect, xlab = 'x', ylab = 'y',
                    main = 'Approximate potential')
   
-  # ... and the error plot
+  # Do the same for the error
+  dataErr <- expand.grid(X = xs, Y = ys)
+  dataErr$Z <- as.vector(result$err)
+  
   plotErr <- levelplot(Z ~ X*Y, data = dataErr, scales = list(draw = TRUE),
                      col.regions = colorRamps::green2red, 
                      aspect = aspect, xlab = 'x', ylab = 'y',
+                     at = seq(0, 1, by = 0.05),
                      main = 'Relative error')
 
   # Plot both together
