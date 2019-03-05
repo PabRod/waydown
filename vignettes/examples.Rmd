@@ -216,6 +216,13 @@ $$
 \end{cases}
 $$
 
+```{r Wadd-eq, echo = FALSE, include = FALSE}
+# Estimated with Wolfram Alpha
+# Prompt: 0 = 0.2 - x + 0.125/(0.0625 + y^4); 0 = 0.05 - y + 0.1094/(0.0625 + x^4)
+xs_eq <- c(0.213416, 0.559865, 2.19971)
+ys_eq <- c(1.74417, 0.730558, 0.0546602)
+```
+
 Such a system represents two genes ($x$ and $y$) that inhibit each other. This circuit works as a toggle switch with two stable steady states, one with dominant $x$ , the other with dominant $y$.
 
 We can code it in vector form:
