@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(consRvative)
 library(latticeExtra)
+library(deSolve)
 ```
 
 ```{r logo, echo=FALSE, fig.height=8.5, fig.pos="H", fig.align='center'}
@@ -71,7 +72,11 @@ plot(xs, Vs,
 
 # Two dimensional examples
 
-## Four well potential
+## Synthetic examples
+
+We generated some abstract, synthetic examples in order to test our method. Here we present some of them.
+
+### A gradient system: the four well potential
 In this section we'll deal with the two-dimensional differential equation given by:
 
 $$
@@ -81,13 +86,13 @@ $$
 \end{cases}
 $$
 
-This is a gradient system, that can be derived from the potential:
+This is a gradient system (because $\frac{\partial f}{\partial x} = \frac{\partial g}{\partial y}$ everywhere). This means that the gradient - curl decomposition will have zero curl term everywhere and, thus, there exists a well defined potential. Particularly, the potential can be analytically proven to be:
 
 $$
 V(x,y) = \frac{x^2}{4}(x^2 - 2) + \frac{y^2}{4}(y^2 - 2) + V_0
 $$
 
-It is important to remember that we'll code the function's input as a vector:
+Let's try to compute it using our algorithm. First, we'll code our function as a vector:
 
 ```{r Four-def}
 f <- function(x) {c(-x[1]*(x[1]^2 - 1), 
@@ -128,14 +133,68 @@ levelplot(Z  ~ X*Y, data = data,
           xlab = 'x', ylab = 'y', main = 'Approximate potential')
 ```
 
-Provided our example is a gradient system, we expect our approximation error to be zero everywhere.
+Provided our example is a purely gradient system, we expect our approximation error to be zero everywhere.
 
 ```{r Four-error}
 max(result$err)
 ```
+### A non-gradient system
+In this example we will apply our algorithm to the system given below:
 
-## Simple regulatory gene network
-A bistable network model can be described by a set of equations of the form:
+$$
+\begin{cases}
+  \frac{dx}{dt} = f(x,y) = -y \\
+  \frac{dy}{dt} = g(x,y) = x
+\end{cases}
+$$
+This is an extreme case. The gradient - curl decomposition will give us zero gradient part everywhere. Let's feed our algorithm with these example to see what happens:
+
+First, we code the dynamics in vector form:
+
+```{r Curl-def}
+# Dynamics
+f <- function(x) {c(-x[2], 
+                    x[1])}
+```
+
+Secondly, we define our region of interest:
+
+```{r Curl-points}
+xs <- seq(-2, 2, by = 0.05)
+ys <- seq(-2, 2, by = 0.05)
+```
+
+And then we are ready to apply our algorithm:
+
+```{r Curl-algorithm, cache = TRUE}
+result <- approxPot2D(f, xs, ys)
+```
+
+The resulting approximate potential looks like:
+
+```{r Curl-plot}
+filled.contour(xs, ys, result$V, 
+        color = colorRamps::matlab.like, asp = 1,
+        main = 'Approximate potential', xlab = 'x', ylab = 'y')
+
+```
+
+Being this a purely non-gradient system we expect our pseudopotential to not be trustworthy. By calculating the error we can see that actually that's the case:
+
+```{r Curl-err}
+filled.contour(xs, ys, result$err, 
+        color = colorRamps::green2red, asp = 1,
+        main = 'Approximation error', xlab = 'x', ylab = 'y')
+```
+
+The fact that the underlying equations are non-gradient have been captured by the algorithm.
+
+## Biological examples
+
+Here we apply our methods to some dynamical equations well known in biology. While the abstract equations in the previous sections can be manipulated to increase or decrease their curl to gradient ratio, equations describing natural dynamical systems don't allow such a manipulation. Once again, the error map will let us know if our system allows a pseudopotential or not.
+
+### Simple regulatory gene network
+A bistable network cell fate model can be described by the set of equations:
 
 $$
 \begin{cases}
@@ -143,6 +202,9 @@ $$
   \frac{dy}{dt} = g(x,y) = b_y - r_y y + \frac{a_y}{k_y + x^n}
 \end{cases}
 $$
+
+Such a system represents two genes ($x$ and $y$) that inhibit each other. This circuit works as a toggle switch with two stable steady states, one with dominant $x$ , the other with dominant $y$.
+
 We can code it in vector form:
 
 ```{r Wadd-def}
@@ -191,6 +253,103 @@ filled.contour(xs, ys, result$V,
 Being this not a gradient system it is advisable to plot the estimated error. The areas in green represent small approximation error, so the potential can be safely used in those regions.
 
 ```{r Wadd-err}
+filled.contour(xs, ys, result$err, 
+        color = colorRamps::green2red, asp = 1,
+        main = 'Approximation error', xlab = 'x', ylab = 'y')
+```
+
+### Lotka-Volterra predator prey dynamics
+Here we will use a variation of the classical Lotka-Volterra predator prey model. Particularly, the Rosenzweig-MacArthur model, that adds a function $g$ accounting for predator saturation and a carrying capacity $k$ to the prey growth.
+
+The dynamics, being $x$ the prey biomass and $y$ the predator biomass, look like:
+
+$$
+\begin{cases}
+  \frac{dx}{dt} = f(x,y) = r x (1 - \frac{x}{k}) - g(x) x y \\
+  \frac{dy}{dt} = g(x,y) = e g(x) x y - m y
+\end{cases}
+$$
+
+with $g(x)$ being a saturation function:
+
+$$
+g(x) = \frac{1}{h + x}
+$$
+
+We can code it in vector form:
+
+```{r VL-def}
+# Parameters
+r <- 1
+k <- 10
+h <- 2
+e <- 0.2
+m <- 0.1
+
+# Auxiliary function
+g <- function(x) {1/(h + x)}
+
+# Dynamics
+f <- function(x) {c(r*x[1]*(1 - x[1]/k) -g(x[1])*x[1]*x[2], 
+                    e*g(x[1])*x[1]*x[2] - m*x[2])}
+
+```
+
+Such a system has a limit cycle attractor, as we can see simulating one of its trajectories (particularly, the one beginning at $x = 1$ and $y = 2$):
+
+```{r VL-solution, echo = FALSE}
+# Package desolve requires a slightly different syntax
+f_dyn <- function(t, state, parameters) {
+with(as.list(c(state, parameters)),{
+# rate of change
+  df <- f(state)
+  dX <- df[1]
+  dY <- df[2]
+
+# return the rate of change
+list(c(dX, dY))
+}) # end with(as.list ...
+}
+
+parms <- c(r =r,
+  k = k,
+  h = h,
+  e = e,
+  m = m)
+
+init_state <- c(1,2)
+ts <- seq(0, 200, by = 0.01)
+out <- ode(y = init_state, times = ts, func = f_dyn, parms = parms)
+
+plot(out[,2], out[,3], type = 'l', asp = 1, 
+     main = 'Trajectory', xlab = 'x (prey biomass)', ylab = 'y (predator biomass)')
+```
+
+For such a system, we expect our pseudopotential to have a high error over large portions of the phase plane. Let's check it. First, we need to define our region of interest:
+
+```{r VL-points}
+xs <- seq(0, 10, by = 0.05)
+ys <- seq(0, 5, by = 0.05)
+```
+
+And then we are ready to apply our algorithm:
+
+```{r VL-algorithm, cache = TRUE}
+result <- approxPot2D(f, xs, ys)
+```
+
+Even for highly non-gradient systems, our method will compute some pseudopotential.
+
+```{r VL-plot}
+filled.contour(xs, ys, result$V, 
+        color = colorRamps::matlab.like, asp = 1,
+        main = 'Approximate potential', xlab = 'x', ylab = 'y')
+
+```
+
+By plotting the estimated error, we can see that it is high almost everywhere. This means that our algorithm noticed that the system is highly non-gradient, and thus, the previously computed pseudopotential is of very limited use.
+
+```{r VL-err}
 filled.contour(xs, ys, result$err, 
         color = colorRamps::green2red, asp = 1,
         main = 'Approximation error', xlab = 'x', ylab = 'y')
