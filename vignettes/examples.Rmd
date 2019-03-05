@@ -16,7 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(consRvative)
 library(latticeExtra)
+library(gridExtra)
 library(deSolve)
+
 ```
 
 ```{r logo, echo=FALSE, fig.height=8.5, fig.pos="H", fig.align='center'}
@@ -71,10 +73,42 @@ plot(xs, Vs,
 ```
 
 # Two dimensional examples
+In this section we'll apply our method to a collection two dimensional systems.
+
+We'll use the following auxiliary function to comfortably generate the plots:
+
+```{r auxiliary-functions, echo = TRUE, include = TRUE}
+plotResults <- function(xs, ys, result, aspect = 1)
+{
+  # Store the pseudo-potential as X, Y and Z columns in the data dataframe
+  dataV <- expand.grid(X = xs, Y = ys)
+  dataV$Z <- as.vector(result$V)
+
+  # Do the same for the error
+  dataErr <- expand.grid(X = xs, Y = ys)
+  dataErr$Z <- as.vector(result$err)
+
+  # Generate the potential plot...
+  plotV <- levelplot(Z ~ X*Y, data = dataV, scales = list(draw = TRUE), 
+                   col.regions = colorRamps::matlab.like,
+                   aspect = aspect, xlab = 'x', ylab = 'y',
+                   main = 'Approximate potential')
+  
+  # ... and the error plot
+  plotErr <- levelplot(Z ~ X*Y, data = dataErr, scales = list(draw = TRUE),
+                     col.regions = colorRamps::green2red, 
+                     aspect = aspect, xlab = 'x', ylab = 'y',
+                     main = 'Relative error')
+
+  # Plot both together
+  print(plotV, split = c(1, 1, 2, 1), more = TRUE)
+  print(plotErr, split = c(2, 1, 2, 1), more = FALSE) 
+}
+```
 
 ## Synthetic examples
 
-We generated some abstract, synthetic examples in order to test our method. Here we present some of them.
+We generated some abstract, synthetic examples in order to test our method. Here we present some of them. 
 
 ### A gradient system: the four well potential
 In this section we'll deal with the two-dimensional differential equation given by:
@@ -102,8 +136,8 @@ f <- function(x) {c(-x[1]*(x[1]^2 - 1),
 Our region of interest is now two-dimensional. We need, thus, two vectors to create our grid of points:
 
 ```{r Four-points}
-xs <- seq(-1.5, 1.5, by = 0.05)
-ys <- seq(-1.5, 1.5, by = 0.05)
+xs <- seq(-1.5, 1.5, by = 0.025)
+ys <- seq(-1.5, 1.5, by = 0.025)
 ```
 
 Now we are ready to apply `approxPot2D`:
@@ -117,27 +151,18 @@ result <- approxPot2D(f, xs, ys)
 * `result$V` contains the estimated values of the potentials at each grid point
 * `result$err` contains the estimated error at each grid point
 
+By plotting them we see:
+
 ```{r Four-plot}
-filled.contour(xs, ys, result$V, 
-        color=gray.colors, asp = 1,
-        main = 'Approximate potential', xlab = 'x', ylab = 'y')
+plotResults(xs, ys, result)
 ```
 
-```{r Four-plot-lattice, echo = FALSE, eval = FALSE}
-data <- expand.grid(xs, ys)
-data$Z <- c(result$V)
-names(data) <- c('X', 'Y', 'Z')
+Provided our example is a purely gradient system, it should not surprise us that the error is zero everywhere.
 
-levelplot(Z  ~ X*Y, data = data, 
-          contour = TRUE, col.regions = gray.colors, asp = 1,
-          xlab = 'x', ylab = 'y', main = 'Approximate potential')
+```{r Four-check}
+max(result$err) == 0
 ```
 
-Provided our example is a purely gradient system, we expect our approximation error to be zero everywhere.
-
-```{r Four-error}
-max(result$err)
-```
 ### A non-gradient system
 In this example we will apply our algorithm to the system given below:
 
@@ -170,23 +195,11 @@ And then we are ready to apply our algorithm:
 result <- approxPot2D(f, xs, ys)
 ```
 
-The resulting approximate potential looks like:
+The resulting approximate potential is plotted below. Being this a purely non-gradient system we expect our pseudopotential to not be trustworthy. By calculating the error we can see that actually that's the case.
 
-```{r Curl-plot}
-filled.contour(xs, ys, result$V, 
-        color = colorRamps::matlab.like, asp = 1,
-        main = 'Approximate potential', xlab = 'x', ylab = 'y')
-
+```{r Curl-grid}
+plotResults(xs, ys, result)
 ```
-
-Being this a purely non-gradient system we expect our pseudopotential to not be trustworthy. By calculating the error we can see that actually that's the case:
-
-```{r Curl-err}
-filled.contour(xs, ys, result$err, 
-        color = colorRamps::green2red, asp = 1,
-        main = 'Approximation error', xlab = 'x', ylab = 'y')
-```
-
 The fact that the underlying equations are non-gradient have been captured by the algorithm.
 
 ## Biological examples
@@ -241,21 +254,10 @@ And then we are ready to apply our algorithm:
 result <- approxPot2D(f, xs, ys)
 ```
 
-The resulting approximate potential looks like:
+The resulting approximate potential is plotted below. Being this not a gradient system it is advisable to plot also the estimated error. The areas in green represent small approximation error, so the potential can be safely used in those regions.
 
-```{r Wadd-plot}
-filled.contour(xs, ys, result$V, 
-        color = colorRamps::matlab.like, asp = 1,
-        main = 'Approximate potential', xlab = 'x', ylab = 'y')
-
-```
-
-Being this not a gradient system it is advisable to plot the estimated error. The areas in green represent small approximation error, so the potential can be safely used in those regions.
-
-```{r Wadd-err}
-filled.contour(xs, ys, result$err, 
-        color = colorRamps::green2red, asp = 1,
-        main = 'Approximation error', xlab = 'x', ylab = 'y')
+```{r Wadd-grid}
+plotResults(xs, ys, result)
 ```
 
 ### Lotka-Volterra predator prey dynamics
@@ -338,20 +340,8 @@ And then we are ready to apply our algorithm:
 result <- approxPot2D(f, xs, ys)
 ```
 
-Even for highly non-gradient systems, our method will compute some pseudopotential.
+Even for highly non-gradient systems, our method will compute some pseudopotential. By plotting the estimated error, we can see that it is high almost everywhere. This means that our algorithm noticed that the system is highly non-gradient, and thus, the previously computed pseudopotential is of very limited use.
 
-```{r VL-plot}
-filled.contour(xs, ys, result$V, 
-        color = colorRamps::matlab.like, asp = 1,
-        main = 'Approximate potential', xlab = 'x', ylab = 'y')
-
+```{r VL-grid}
+plotResults(xs, ys, result, aspect = 0.5)
 ```
-
-By plotting the estimated error, we can see that it is high almost everywhere. This means that our algorithm noticed that the system is highly non-gradient, and thus, the previously computed pseudopotential is of very limited use.
-
-```{r VL-err}
-filled.contour(xs, ys, result$err, 
-        color = colorRamps::green2red, asp = 1,
-        main = 'Approximation error', xlab = 'x', ylab = 'y')
-```
-
