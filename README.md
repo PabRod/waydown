@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/PabRod/consRvative.svg?branch=master)](https://travis-ci.org/PabRod/consRvative)
 [![codecov](https://codecov.io/gh/PabRod/consRvative/branch/master/graph/badge.svg)](https://codecov.io/gh/PabRod/consRvative)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # consRvative <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
