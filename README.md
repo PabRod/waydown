@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/PabRod/rolldown.svg?branch=master)](https://travis-ci.org/PabRod/rolldown)
-[![codecov](https://codecov.io/gh/PabRod/rolldown/branch/master/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
+[![codecov](https://codecov.io/gh/PabRod/rolldown/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
