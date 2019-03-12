@@ -1,4 +1,4 @@
 library(testthat)
-library(consRvative)
+library(rolldown)
 
-test_check("consRvative")
+test_check("rolldown")

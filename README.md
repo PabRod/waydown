@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/PabRod/consRvative.svg?branch=master)](https://travis-ci.org/PabRod/consRvative)
-[![codecov](https://codecov.io/gh/PabRod/consRvative/branch/master/graph/badge.svg)](https://codecov.io/gh/PabRod/consRvative)
+[![Build Status](https://travis-ci.org/PabRod/rolldown.svg?branch=master)](https://travis-ci.org/PabRod/rolldown)
+[![codecov](https://codecov.io/gh/PabRod/rolldown/branch/master/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# consRvative <img src="vignettes/img/logo.png" width="120" align="right" />
+# rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
 
 For a detailed overview of the underlying ideas, please refer to the paper _Climbing Escher’s stairs, or how to estimate stability
@@ -14,7 +14,7 @@ landscapes for multidimensional deterministic systems_, by Pablo Rodríguez-Sán
 This is a _R_ package. _R_ is required, _R studio_ is recommended.
 
 ### Installing
-Type `devtools::install_github("PabRod/consRvative", ref = "develop")` in your `R` command console.
+Type `devtools::install_github("PabRod/rolldown", ref = "develop")` in your `R` command console.
 
 ### Running the tests
 The integrity of this package can be checked by running the battery of tests available at `./tests`.

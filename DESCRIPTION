@@ -1,4 +1,4 @@
-Package: consRvative
+Package: rolldown
 Type: Package
 Title: Computation of approximate potentials for both gradient and non gradient fields
 Version: 1.0.0
