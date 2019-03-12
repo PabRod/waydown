@@ -14,7 +14,7 @@ landscapes for multidimensional deterministic systems_, by Pablo Rodríguez-Sán
 This is a _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
 
 ### Installing
-Type `devtools::install_github("PabRod/rolldown", ref = "develop")` in your `R` command console.
+Type `devtools::install_github("PabRod/rolldown", ref = "master")` in your `R` command console.
 
 ### Running the tests
 The integrity of this package can be checked by running the battery of tests available at `./tests`.
