@@ -15,7 +15,12 @@ For a detailed overview of the underlying ideas, please refer to the paper [_Cli
 This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
 
 ### Installing
+
+#### Latest stable version
 Type `devtools::install_github("PabRod/rolldown", ref = "master")` in your `R` command console.
+
+#### Latest version
+Type `devtools::install_github("PabRod/rolldown", ref = "develop")` in your `R` command console.
 
 ### Running the tests
 The integrity of this package can be checked by running the battery of tests available at `./tests`.
