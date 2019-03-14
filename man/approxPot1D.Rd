@@ -29,6 +29,9 @@ xs <- seq(0, 2*pi, length.out = 1e3)
 # Approximated potential
 Vs <- approxPot1D(f, xs)
 }
+\references{
+\url{https://arxiv.org/abs/1903.05615}
+}
 \seealso{
 \code{\link{approxPot2D}, \link{deltaV}}
 }

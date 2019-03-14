@@ -41,6 +41,9 @@ x1 <- matrix(c(0.98,2.01), ncol = 1)
 
 dV <- deltaV(f, x1, x0)
 }
+\references{
+\url{https://arxiv.org/abs/1903.05615}
+}
 \seealso{
 \code{\link{approxPot1D}, \link{approxPot2D}}
 }

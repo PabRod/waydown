@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @author Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
+#' @references \url{https://arxiv.org/abs/1903.05615}
 #'
 #'
 #' @seealso \code{\link{approxPot1D}, \link{approxPot2D}}

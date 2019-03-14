@@ -34,6 +34,9 @@ ys <- seq(-1.5, 1.5, length.out = 15)
 # Approximated potential
 Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
 }
+\references{
+\url{https://arxiv.org/abs/1903.05615}
+}
 \seealso{
 \code{\link{approxPot1D}, \link{deltaV}}
 }
