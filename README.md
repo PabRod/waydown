@@ -6,13 +6,12 @@
 # rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
 
-For a detailed overview of the underlying ideas, please refer to the paper _Climbing Escher’s stairs, or how to estimate stability
-landscapes for multidimensional deterministic systems_, by Pablo Rodríguez-Sánchez, Egbert van Nes and Marten Scheffer.
+For a detailed overview of the underlying ideas, please refer to the paper [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://arxiv.org/abs/1903.05615), by Pablo Rodríguez-Sánchez, Egbert van Nes, and Marten Scheffer.
 
 ## Getting started
 
 ### Prerrequisites
-This is a _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
+This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
 
 ### Installing
 Type `devtools::install_github("PabRod/rolldown", ref = "master")` in your `R` command console.
