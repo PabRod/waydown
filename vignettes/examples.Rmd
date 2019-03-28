@@ -345,6 +345,96 @@ grid.arrange(plotV, plotErr, ncol = 2)
 
 ```
 
+### Selkov equation
+The Selkov model for glycolysis reads like:
+
+$$
+\begin{cases}
+  \frac{dx}{dt} & = -x + ay + x^2 y \\
+  \frac{dy}{dt} & = b - a y - x^2 y
+\end{cases}
+$$
+
+where $x$ and $y$ represent the concentrations of two chemicals. If we fix $a = 0.1$, such a system shows a limit cycle for $b \in [0.42, 0.79]$. At each side of this interval, a Hopf bifurcation happens.
+
+We can code it in vector form:
+
+```{r Selkov-def}
+# Parameters
+a <- 0.1
+b <- 0.5
+
+# Dynamics
+f <- function(x) {c(-x[1] + a*x[2] + x[1]^2*x[2], 
+                    b - a*x[2] - x[1]^2*x[2])}
+```
+
+This system is interesting because the Jacobian is independent of $b$, so our error map will remain constant along the bifurcation. Let's see what happens:
+
+```{r Selkov-solution, echo = FALSE}
+# Package desolve requires a slightly different syntax
+f_dyn <- function(t, state, parameters) {
+with(as.list(c(state, parameters)),{
+# rate of change
+  df <- f(state)
+  dX <- df[1]
+  dY <- df[2]
+
+# return the rate of change
+list(c(dX, dY))
+}) # end with(as.list ...
+}
+
+roi <- c(0, 2.5, 0, 2.5)
+init_state <- c(1, .05)
+ts <- seq(0, 1000, by = 0.01)
+
+bs <- c(0.1, 0.6, 1.3)
+
+for (b in bs) {
+  
+out <- ode(y = init_state, times = ts, func = f_dyn, parms = c(a = a, b = b))
+
+colnames(out) <- c("time", "x", "y")
+out <- as.data.frame(out)
+
+xs <- seq(roi[1], roi[2], by = 0.05)
+ys <- seq(roi[3], roi[4], by = 0.05)
+
+result <- approxPot2D(f, xs, ys)
+
+# Get the limit cycle attractor
+attr <- dplyr::filter(as.data.frame(out), time > 0)
+
+# Transform result into dataframe
+data <- expand.grid(X = xs, Y = ys)
+data$V <- as.vector(result$V)
+data$err <- as.vector(result$err)
+
+nbins <- 15
+
+plotV <- ggplot() +
+          geom_tile(data = data, aes(x = X, y = Y, fill = V)) +
+          geom_contour(data = data, aes(x = X, y = Y, z = V), colour = 'white', alpha = 0.5, bins = nbins) +
+          geom_path(data = attr, aes(x = x, y = y)) +
+          coord_fixed() +
+          scale_fill_gradientn(colours = colorRamps::matlab.like(nbins)) +
+          xlab("x") + ylab("y") + ggtitle("Approximate potential") +
+          theme_bw()
+
+plotErr <- ggplot() +
+          geom_tile(data = data, aes(x = X, y = Y, fill = err)) +
+          geom_contour(data = data, aes(x = X, y = Y, z = err), colour = 'white', alpha = 0.5, bins = nbins) +
+          geom_path(data = attr, aes(x = x, y = y)) +
+          coord_fixed() +
+          scale_fill_gradientn(colours = colorRamps::green2red(nbins), limits = c(0,1)) +
+          xlab("x") + ylab("y") + ggtitle(sprintf("Error map. b = %.3f ", b)) +
+          theme_bw()
+
+grid.arrange(plotV, plotErr, ncol = 2)
+}
+```
+
 ### Lotka-Volterra predator prey dynamics
 Here we will use a variation of the classical Lotka-Volterra predator prey model. Particularly, the Rosenzweig-MacArthur model, that adds a function $g$ accounting for predator saturation and a carrying capacity $k$ to the prey growth.
 
