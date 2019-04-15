@@ -74,7 +74,7 @@ approxPot1D <- function(f, xs, V0 = 'auto') {
 #'
 #' # Approximated potential
 #' Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
-approxPot2D <- function(f, xs, ys, V0 = 'auto', mode = 'horizontal') {
+approxPot2D <- function(f, xs, ys, V0 = 'auto', mode = 'mixed') {
   # Initialize
   V <- matrix(0, nrow = length(xs), ncol = length(ys))
   err <- matrix(0, nrow = length(xs), ncol = length(ys))

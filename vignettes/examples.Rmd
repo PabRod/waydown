@@ -321,7 +321,7 @@ eqPoints <- data.frame(x_eq = c(0.213416, 0.559865, 2.19971),
 The resulting approximate potential is plotted below. Being this not a gradient system it is advisable to plot also the estimated error. The areas in green represent small approximation error, so the potential can be safely used in those regions.
 
 ```{r Wadd-plot, echo=FALSE, message=FALSE, warning=FALSE}
-nbins <- 15
+nbins <- 25
 
 plotV <- ggplot() +
           geom_tile(data = data, aes(x = X, y = Y, fill = V)) +

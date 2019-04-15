@@ -4,7 +4,7 @@
 \alias{approxPot2D}
 \title{Approximate potential in two dimensions}
 \usage{
-approxPot2D(f, xs, ys, V0 = "auto", mode = "horizontal")
+approxPot2D(f, xs, ys, V0 = "auto", mode = "mixed")
 }
 \arguments{
 \item{f}{Two-dimensional representing the flow (right hand side of differential equation)}
