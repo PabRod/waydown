@@ -1,11 +1,11 @@
 Package: rolldown
 Type: Package
 Title: Computation of approximate potentials for weakly non-gradient fields
-Version: 1.0.1
+Version: 1.0.2
 Author: Pablo Rodríguez-Sánchez
 Maintainer: Pablo Rodríguez-Sánchez <pablo.rodriguez.sanchez@gmail.com>
 Description: Computation of approximate potentials for both gradient and non gradient fields
-    It is known from physics that only gradient fields, also known as conservative, have a well defined potential function. Here we present an algorithm to obtain an approximate potential function for non gradient fields.
+    It is known from physics that only gradient fields, also known as conservative, have a well defined potential function. Here we present an algorithm to obtain an approximate potential function for non gradient fields. More information in https://arxiv.org/abs/1903.05615
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
