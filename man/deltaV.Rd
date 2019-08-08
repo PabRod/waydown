@@ -4,7 +4,7 @@
 \alias{deltaV}
 \title{Approximate potential difference between two points}
 \usage{
-deltaV(f, x, x0)
+deltaV(f, x, x0, normType = "f")
 }
 \arguments{
 \item{f}{Flow equations (right hand side of differential equation)}
@@ -12,6 +12,8 @@ deltaV(f, x, x0)
 \item{x}{Position where we want to know the approximate potential}
 
 \item{x0}{Reference position (center of the Taylor expansion)}
+
+\item{normType}{(default: 'f') Matrix norm used to compute the error}
 }
 \value{
 A list containing the approximate potential difference between x and x0 and the estimated error
@@ -45,7 +47,7 @@ dV <- deltaV(f, x1, x0)
 \url{https://arxiv.org/abs/1903.05615}
 }
 \seealso{
-\code{\link{approxPot1D}, \link{approxPot2D}}
+\code{\link{approxPot1D}, \link{approxPot2D}, \link{norm}}
 }
 \author{
 Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})

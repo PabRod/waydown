@@ -14,4 +14,5 @@ playground/
 *_files
 *_cache
 vignettes/assets/
+vignettes/frames/
 *.blg
