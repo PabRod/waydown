@@ -2,7 +2,7 @@ context("Approximate potentials")
 
 test_that("1D", {
   # Flow
-  f = function(x) { sin(x) }
+  f <- function(x) { sin(x) }
 
   # Sampling points
   xs <- seq(0, 2*pi, length.out = 1e3)
@@ -20,7 +20,7 @@ test_that("1D", {
 
 test_that("1D auto", {
   # Flow
-  f = function(x) { sin(x) }
+  f <- function(x) { sin(x) }
 
   # Sampling points
   xs <- seq(0, 2*pi, length.out = 1e2)
@@ -38,7 +38,7 @@ test_that("1D auto", {
 
 test_that("2D exact horizontal", {
   # Flow
-  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+  f <- function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
   # Sampling points
   xs <- seq(-1.5, 1.5, length.out = 125)
@@ -66,7 +66,7 @@ test_that("2D exact horizontal", {
 
 test_that("2D exact vertical", {
   # Flow
-  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+  f <- function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
   # Sampling points
   xs <- seq(-1.5, 1.5, length.out = 125)
@@ -94,7 +94,7 @@ test_that("2D exact vertical", {
 
 test_that("2D exact mixed", {
   # Flow
-  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+  f <- function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
   # Sampling points
   xs <- seq(-1.5, 1.5, length.out = 125)
@@ -122,7 +122,7 @@ test_that("2D exact mixed", {
 
 test_that("2D wrong mode", {
   # Flow
-  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+  f <- function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
   # Sampling points
   xs <- seq(-1.5, 1.5, length.out = 125)
@@ -136,7 +136,7 @@ test_that("2D wrong mode", {
 
 test_that("2D auto", {
   # Flow
-  f = function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
+  f <- function(x) {c(-x[1]*(x[1]^2 - 1.1), -x[2]*(x[2]^2 - 1))}
 
   # Sampling points
   xs <- seq(-1.5, 1.5, length.out = 50)

@@ -24,7 +24,7 @@
 #' Vs <- approxPot1D(f, xs)
 approxPot1D <- function(f, xs, V0 = 'auto') {
   # Initialize
-  V <- vector(mode="numeric", length = length(xs))
+  V <- vector(mode = 'numeric', length = length(xs))
 
   # Assign initial value
   # The algorithm is a recursion relationship. It needs an initial potential at the first integration point
@@ -37,7 +37,7 @@ approxPot1D <- function(f, xs, V0 = 'auto') {
   # Compute
   for(i in 2:length(xs)) {
     temp <- deltaV(f, xs[i], xs[i-1])
-    V[i] = V[i-1] + temp$dV
+    V[i] <- V[i-1] + temp$dV
   }
 
   if(V0 == 'auto') {
@@ -129,7 +129,7 @@ approxPot2D <- function(f, xs, ys, V0 = 'auto', mode = 'mixed') {
 
       } else {
 
-        stop("Error: supported modes are horizontal (default), vertical and mixed")
+        stop('Error: supported modes are horizontal (default), vertical and mixed')
 
       }
     }
