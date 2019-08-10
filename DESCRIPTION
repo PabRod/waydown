@@ -1,7 +1,7 @@
 Package: rolldown
 Type: Package
 Title: Computation of approximate potentials for weakly non-gradient fields
-Version: 1.0.2
+Version: 1.0.3
 Author: Pablo Rodríguez-Sánchez
 Maintainer: Pablo Rodríguez-Sánchez <pablo.rodriguez.sanchez@gmail.com>
 Description: Computation of approximate potentials for both gradient and non gradient fields
