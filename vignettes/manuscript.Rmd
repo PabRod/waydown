@@ -38,7 +38,7 @@ header-includes:
   - \author[1]{Marten Scheffer \thanks{\texttt{marten.scheffer@wur.nl}}}
   - \affil[1]{Department of Aquatic Ecology, Wageningen University, The Netherlands}
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Manuscript}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 ---
