@@ -19,6 +19,9 @@ Suggests: testthat,
           colorRamps,
           ggplot2,
           gridExtra,
-          latticeExtra
+          latticeExtra,
+          bookdown,
+          rootSolve,
+          reticulate
 Imports: numDeriv, 
          Matrix
