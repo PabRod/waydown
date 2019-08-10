@@ -23,7 +23,7 @@ knitr::include_graphics('img/logo.png')
 To install the package, please type
 
 ```
-devtools::install_github("PabRod/rolldown", ref = "develop")
+devtools::install_github("PabRod/rolldown", ref = "master")
 ```
 
 in your _R_ console.
