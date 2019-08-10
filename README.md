@@ -22,6 +22,15 @@ Type `devtools::install_github("PabRod/rolldown", ref = "master")` in your `R` c
 #### Latest version
 Type `devtools::install_github("PabRod/rolldown", ref = "develop")` in your `R` command console.
 
+#### Reproduce my manuscript
+If you want to locally reproduce my manuscript [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://arxiv.org/abs/1903.05615), follow these steps:
+
+0. Type `devtools::install_github("PabRod/rolldown", ref = "feature/reproducible")` to install `rolldown` and the libraries needed to reproduce the manuscript
+1. Clone or download the reproducible branch of this repository (shortcut: `git clone --single-branch --branch feature/reproducible https://github.com/PabRod/rolldown.git`)
+2. knit the file [`vignettes\manuscript.Rmd`](https://github.com/PabRod/rolldown/blob/feature/reproducible/vignettes/manuscript.Rmd)
+
+Rendering the figures requires `Python`, and the packages `matplotlib` and `numpy`.
+
 ### Running the tests
 The integrity of this package can be checked by running the battery of tests available at `./tests`.
 
