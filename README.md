@@ -7,7 +7,9 @@
 # rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
 
-For a detailed overview of the underlying ideas, please refer to the paper [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://arxiv.org/abs/1903.05615), by Pablo Rodríguez-Sánchez, Egbert van Nes, and Marten Scheffer.
+For a detailed overview of the underlying ideas, please refer to:
+
+[Rodríguez-Sánchez P](https://pabrod.github.io) [![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-2855-940X), van Nes EH, Scheffer M (2020) Climbing Escher’s stairs: A way to approximate stability landscapes in multidimensional systems. PLOS Computational Biology 16(4): e1007788. https://doi.org/10.1371/journal.pcbi.1007788
 
 ## Getting started
 
@@ -37,8 +39,22 @@ The integrity of this package can be checked by running the battery of tests ava
 ### Examples of usage
 A vignette with examples of usage can be found in [inst/doc/examples.pdf](inst/doc/examples.pdf)
 
+## Citation
+If you use this software, the information below may help you citing it.
+```
+Rodríguez-Sánchez, P. (2019). PabRod/rolldown: a package for computing pseudopotentials. https://doi.org/10.5281/zenodo.2591550
+```
+
+If you want to cite also the paper describing the algorithm used by this software, please use:
+
+```
+Rodríguez-Sánchez, P., van Nes, E. H., & Scheffer, M. (2020). Climbing Escher’s stairs: A way to approximate stability landscapes in multidimensional systems. PLOS Computational Biology, 16(4), e1007788. https://doi.org/10.1371/journal.pcbi.1007788
+```
+
+Feel free to use the [`.bib` file]('./CITATION.bib') contained in this repository.
+
 ## Authors
-- [Pablo Rodríguez-Sánchez](https://pabrod.github.io)
+- [Pablo Rodríguez-Sánchez](https://pabrod.github.io) [![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-2855-940X)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
