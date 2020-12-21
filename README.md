@@ -2,7 +2,8 @@
 [![codecov](https://codecov.io/gh/PabRod/rolldown/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
 [![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/143162432.svg)](https://doi.org/10.5281/zenodo.2591550)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3763038.svg)](https://doi.org/10.5281/zenodo.3763038)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
 # rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
