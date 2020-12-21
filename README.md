@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/PabRod/rolldown.svg?branch=master)](https://travis-ci.org/PabRod/rolldown)
+[![Build Status](https://github.com/PabRod/rolldown/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/rolldown/actions)
 [![codecov](https://codecov.io/gh/PabRod/rolldown/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
 [![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
