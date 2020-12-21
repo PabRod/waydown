@@ -19,6 +19,7 @@ Suggests: testthat,
           colorRamps,
           ggplot2,
           gridExtra,
-          latticeExtra
+          latticeExtra,
+          bindrcpp
 Imports: numDeriv, 
          Matrix
