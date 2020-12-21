@@ -23,7 +23,7 @@ knitr::include_graphics('img/logo.png')
 To install the package, please type
 
 ```
-devtools::install_github("PabRod/rolldown", ref = "master")
+devtools::install_github("PabRod/waydown", ref = "master")
 ```
 
 in your _R_ console.
@@ -33,7 +33,7 @@ in your _R_ console.
 In this vignette we will use the following libraries:
 
 ```{r libraries, echo=TRUE, message=FALSE}
-library(rolldown)
+library(waydown)
 
 # To calculate some trajectories
 library(deSolve)

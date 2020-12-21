@@ -1,6 +1,6 @@
 # YAML 1.2
 ---
-authors: 
+authors:
   -
     affiliation: "Netherlands eScience Center"
     family-names: "Rodríguez-Sánchez"
@@ -9,5 +9,5 @@ authors:
 cff-version: "1.1.0"
 license: MIT
 message: "If you use this software, please cite it using these metadata."
-title: "PabRod/rolldown: a package for computing pseudopotentials"
+title: "PabRod/waydown: a package for computing pseudopotentials"
 ...

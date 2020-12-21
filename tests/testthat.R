@@ -1,4 +1,4 @@
 library(testthat)
-library(rolldown)
+library(waydown)
 
-test_check("rolldown")
+test_check("waydown")

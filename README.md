@@ -1,11 +1,11 @@
-[![Build Status](https://github.com/PabRod/rolldown/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/rolldown/actions)
-[![codecov](https://codecov.io/gh/PabRod/rolldown/graph/badge.svg)](https://codecov.io/gh/PabRod/rolldown)
+[![Build Status](https://github.com/PabRod/waydown/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/waydown/actions)
+[![codecov](https://codecov.io/gh/PabRod/waydown/graph/badge.svg)](https://codecov.io/gh/PabRod/waydown)
 [![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3763038.svg)](https://doi.org/10.5281/zenodo.3763038)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 
-# rolldown <img src="vignettes/img/logo.png" width="120" align="right" />
+# waydown <img src="vignettes/img/logo.png" width="120" align="right" />
 This package implements some methods for computing potential landscapes for non-gradient systems.
 
 For a detailed overview of the underlying ideas, please refer to:
@@ -20,17 +20,17 @@ This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio
 ### Installing
 
 #### Latest stable version
-Type `devtools::install_github("PabRod/rolldown", ref = "master")` in your `R` command console.
+Type `devtools::install_github("PabRod/waydown", ref = "master")` in your `R` command console.
 
 #### Latest version
-Type `devtools::install_github("PabRod/rolldown", ref = "develop")` in your `R` command console.
+Type `devtools::install_github("PabRod/waydown", ref = "develop")` in your `R` command console.
 
 #### Reproduce my manuscript
 If you want to locally reproduce my manuscript [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://arxiv.org/abs/1903.05615), follow these steps:
 
-0. Type `devtools::install_github("PabRod/rolldown", ref = "feature/reproducible")` to install `rolldown` and the libraries needed to reproduce the manuscript
-1. Clone or download the reproducible branch of this repository (shortcut: `git clone --single-branch --branch feature/reproducible https://github.com/PabRod/rolldown.git`)
-2. knit the file [`vignettes\manuscript.Rmd`](https://github.com/PabRod/rolldown/blob/feature/reproducible/vignettes/manuscript.Rmd)
+0. Type `devtools::install_github("PabRod/waydown", ref = "feature/reproducible")` to install `waydown` and the libraries needed to reproduce the manuscript
+1. Clone or download the reproducible branch of this repository (shortcut: `git clone --single-branch --branch feature/reproducible https://github.com/PabRod/waydown.git`)
+2. knit the file [`vignettes\manuscript.Rmd`](https://github.com/PabRod/waydown/blob/feature/reproducible/vignettes/manuscript.Rmd)
 
 Rendering the figures requires `Python`, and the packages `matplotlib` and `numpy`.
 
@@ -43,7 +43,7 @@ A vignette with examples of usage can be found in [inst/doc/examples.pdf](inst/d
 ## Citation
 If you use this software, the information below may help you citing it.
 ```
-Rodríguez-Sánchez, P. (2019). PabRod/rolldown: a package for computing pseudopotentials. https://doi.org/10.5281/zenodo.2591550
+Rodríguez-Sánchez, P. (2019). PabRod/waydown: a package for computing pseudopotentials. https://doi.org/10.5281/zenodo.2591550
 ```
 
 If you want to cite also the paper describing the algorithm used by this software, please use:

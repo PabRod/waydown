@@ -1,4 +1,4 @@
-Package: rolldown
+Package: waydown
 Type: Package
 Title: Computation of approximate potentials for weakly non-gradient fields
 Version: 1.0.3
