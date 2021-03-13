@@ -52,8 +52,6 @@ If you want to cite also the paper describing the algorithm used by this softwar
 Rodríguez-Sánchez, P., van Nes, E. H., & Scheffer, M. (2020). Climbing Escher’s stairs: A way to approximate stability landscapes in multidimensional systems. PLOS Computational Biology, 16(4), e1007788. https://doi.org/10.1371/journal.pcbi.1007788
 ```
 
-Feel free to use the [`.bib` CITATION file](inst/CITATION) contained in this repository.
-
 ## Authors
 - [Pablo Rodríguez-Sánchez](https://pabrod.github.io) [![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-2855-940X)
 
