@@ -16,3 +16,5 @@ playground/
 vignettes/assets/
 vignettes/frames/
 *.blg
+..Rcheck/
+waydown.Rcheck/

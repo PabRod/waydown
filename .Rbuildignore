@@ -1,4 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.*playground
-.travis.yml
+^CITATION\.bib$
+^CITATION\.cff$
+^\.\.Rcheck$
+^\.git$
+^\.github$
+^\.gitignore$
+^\.Rhistory$
+^waydown\.Rcheck$
