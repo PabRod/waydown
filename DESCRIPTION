@@ -1,6 +1,6 @@
 Package: waydown
 Type: Package
-Title: Computation of approximate potentials for weakly non-gradient fields
+Title: Computation of Approximate Potentials for Weakly Non-Gradient Fields
 Version: 1.0.3
 Author: Pablo Rodríguez-Sánchez
 Maintainer: Pablo Rodríguez-Sánchez <pablo.rodriguez.sanchez@gmail.com>
