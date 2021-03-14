@@ -1,6 +1,6 @@
 [![Build Status](https://github.com/PabRod/waydown/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/waydown/actions)
 [![codecov](https://codecov.io/gh/PabRod/waydown/graph/badge.svg)](https://codecov.io/gh/PabRod/waydown)
-[![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/)
+[![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3763038.svg)](https://doi.org/10.5281/zenodo.3763038)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
@@ -15,7 +15,7 @@ For a detailed overview of the underlying ideas, please refer to:
 ## Getting started
 
 ### Prerrequisites
-This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://www.rstudio.com/) is recommended.
+This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://rstudio.com/) is recommended.
 
 ### Installing
 
@@ -59,4 +59,4 @@ Rodríguez-Sánchez, P., van Nes, E. H., & Scheffer, M. (2020). Climbing Escher�
 This project is licensed under the MIT License.
 
 ## Acknowledgements
-This work was greatly inspired by the dicussions with [Cristina Sargent](https://www.researchgate.net/profile/Cristina_Sargent), [Iñaki Úcar](https://github.com/Enchufa2/), [Enrique Benito](https://sites.google.com/site/enriquebenitomatias/), [Tobias Oertel-Jäger](https://users.fmi.uni-jena.de/~tjaeger/), [Jelle Lever](https://www.researchgate.net/profile/J-Jelle-Lever), [Sanne J.P. van den Berg](https://www.researchgate.net/profile/Sanne-Van-Den-Berg-4) and [Els Weinans](https://www.wur.nl/es/Persons/Els-E-Els-Weinans-MSc.htm). This work was supported by funding from the European Union's _Horizon 2020_ research and innovation programme for the [_ITN CRITICS_](http://www.criticsitn.eu/wp/) under Grant Agreement Number _643073_.
+This work was greatly inspired by the dicussions with [Cristina Sargent](https://www.researchgate.net/profile/Cristina-Sargent), [Iñaki Úcar](https://github.com/Enchufa2/), [Enrique Benito](https://sites.google.com/site/enriquebenitomatias/), [Tobias Oertel-Jäger](https://users.fmi.uni-jena.de/~tjaeger/), [Jelle Lever](https://www.researchgate.net/profile/J-Jelle-Lever), [Sanne J.P. van den Berg](https://www.researchgate.net/profile/Sanne-Van-Den-Berg-4) and [Els Weinans](https://www.wur.nl/es/Persons/Els-E-Els-Weinans-MSc.htm). This work was supported by funding from the European Union's _Horizon 2020_ research and innovation programme for the [_ITN CRITICS_](https://cordis.europa.eu/project/id/643073) under Grant Agreement Number _643073_.
