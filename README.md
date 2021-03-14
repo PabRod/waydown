@@ -56,7 +56,7 @@ Rodríguez-Sánchez, P., van Nes, E. H., & Scheffer, M. (2020). Climbing Escher�
 - [Pablo Rodríguez-Sánchez](https://pabrod.github.io) [![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0002-2855-940X)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License.
 
 ## Acknowledgements
-This work was greatly inspired by the dicussions with [Cristina Sargent](https://www.researchgate.net/profile/Cristina_Sargent), [Iñaki Úcar](https://github.com/Enchufa2/), [Enrique Benito](https://sites.google.com/site/enriquebenitomatias/), [Tobias Oertel-Jäger](https://users.fmi.uni-jena.de/~tjaeger/), [Jelle Lever](https://www.linkedin.com/in/jellelever/), [Sanne J.P. van den Berg](https://www.linkedin.com/in/sanne-van-den-berg-23253b6b/) and [Els Weinans](https://www.wur.nl/es/Persons/Els-E-Els-Weinans-MSc.htm). This work was supported by funding from the European Union's _Horizon 2020_ research and innovation programme for the [_ITN CRITICS_](http://www.criticsitn.eu/wp/) under Grant Agreement Number _643073_.
+This work was greatly inspired by the dicussions with [Cristina Sargent](https://www.researchgate.net/profile/Cristina_Sargent), [Iñaki Úcar](https://github.com/Enchufa2/), [Enrique Benito](https://sites.google.com/site/enriquebenitomatias/), [Tobias Oertel-Jäger](https://users.fmi.uni-jena.de/~tjaeger/), [Jelle Lever](https://www.researchgate.net/profile/J-Jelle-Lever), [Sanne J.P. van den Berg](https://www.researchgate.net/profile/Sanne-Van-Den-Berg-4) and [Els Weinans](https://www.wur.nl/es/Persons/Els-E-Els-Weinans-MSc.htm). This work was supported by funding from the European Union's _Horizon 2020_ research and innovation programme for the [_ITN CRITICS_](http://www.criticsitn.eu/wp/) under Grant Agreement Number _643073_.
