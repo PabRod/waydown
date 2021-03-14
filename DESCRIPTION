@@ -4,13 +4,13 @@ Title: Computation of Approximate Potentials for Weakly Non-Gradient Fields
 Version: 1.1.0
 Author: Pablo Rodríguez-Sánchez
 Maintainer: Pablo Rodríguez-Sánchez <pablo.rodriguez.sanchez@gmail.com>
-Description: Computation of approximate potentials for both gradient and non 
-    gradient fields. It is known from physics that only gradient fields, also 
+Description: Computation of approximate potentials for both gradient and non
+    gradient fields. It is known from physics that only gradient fields, also
     known as conservative, have a well defined potential function. Here we
-    present an algorithm, based on the classical Helmholtz decomposition, to 
-    obtain an approximate potential function for non gradient fields. 
-    More information in 
-    Rodríguez-Sánchez (2020) <doi.org/10.1371/journal.pcbi.1007788>.
+    present an algorithm, based on the classical Helmholtz decomposition, to
+    obtain an approximate potential function for non gradient fields.
+    More information in
+    Rodríguez-Sánchez (2020) <doi:10.1371/journal.pcbi.1007788>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -26,5 +26,5 @@ Suggests: testthat,
           gridExtra,
           latticeExtra,
           bindrcpp
-Imports: numDeriv, 
+Imports: numDeriv,
          Matrix
