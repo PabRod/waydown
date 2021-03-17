@@ -20,7 +20,7 @@ This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio
 ### Installing
 
 #### Latest stable version
-Type `devtools::install_github("PabRod/waydown", ref = "master")` in your `R` command console.
+This package can be installed from CRAN. Type `install.packages("waydown")` in your `R` command console.
 
 #### Latest version
 Type `devtools::install_github("PabRod/waydown", ref = "develop")` in your `R` command console.
