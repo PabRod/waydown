@@ -35,7 +35,7 @@ ys <- seq(-1.5, 1.5, length.out = 15)
 Vs <- approxPot2D(f, xs, ys, mode = 'horizontal')
 }
 \references{
-\url{https://arxiv.org/abs/1903.05615}
+\url{https://doi.org/10.1371/journal.pcbi.1007788}
 }
 \seealso{
 \code{\link{approxPot1D}, \link{deltaV}}

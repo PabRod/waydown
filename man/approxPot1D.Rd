@@ -30,7 +30,7 @@ xs <- seq(0, 2*pi, length.out = 1e3)
 Vs <- approxPot1D(f, xs)
 }
 \references{
-\url{https://arxiv.org/abs/1903.05615}
+\url{https://doi.org/10.1371/journal.pcbi.1007788}
 }
 \seealso{
 \code{\link{approxPot2D}, \link{deltaV}}

@@ -26,7 +26,7 @@ This package can be installed from CRAN. Type `install.packages("waydown")` in y
 Type `devtools::install_github("PabRod/waydown", ref = "develop")` in your `R` command console.
 
 #### Reproduce my manuscript
-If you want to locally reproduce my manuscript [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://arxiv.org/abs/1903.05615), follow these steps:
+If you want to locally reproduce my manuscript [_Climbing Escher's stairs: a simple quasi-potential algorithm for weakly non-gradient systems_](https://doi.org/10.1371/journal.pcbi.1007788), follow these steps:
 
 0. Type `devtools::install_github("PabRod/waydown", ref = "feature/reproducible")` to install `waydown` and the libraries needed to reproduce the manuscript
 1. Clone or download the reproducible branch of this repository (shortcut: `git clone --single-branch --branch feature/reproducible https://github.com/PabRod/waydown.git`)

@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @author Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
-#' @references \url{https://arxiv.org/abs/1903.05615}
+#' @references \url{https://doi.org/10.1371/journal.pcbi.1007788}
 #'
 #'
 #' @seealso \code{\link{approxPot2D}, \link{deltaV}}
@@ -59,7 +59,7 @@ approxPot1D <- function(f, xs, V0 = 'auto') {
 #' @export
 #'
 #' @author Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
-#' @references \url{https://arxiv.org/abs/1903.05615}
+#' @references \url{https://doi.org/10.1371/journal.pcbi.1007788}
 #'
 #'
 #' @seealso \code{\link{approxPot1D}, \link{deltaV}}

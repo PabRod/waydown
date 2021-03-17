@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @author Pablo Rodríguez-Sánchez (\url{https://pabrod.github.io})
-#' @references \url{https://arxiv.org/abs/1903.05615}
+#' @references \url{https://doi.org/10.1371/journal.pcbi.1007788}
 #'
 #'
 #' @seealso \code{\link{approxPot1D}, \link{approxPot2D}, \link{norm}}
@@ -46,7 +46,7 @@ deltaV <- function(f, x, x0, normType='f') {
 
   # Use J_symm to estimate the difference in potential as 2nd order Taylor expansion
   #
-  # Detailed information available at https://arxiv.org/abs/1903.05615
+  # Detailed information available at https://doi.org/10.1371/journal.pcbi.1007788
   dV <- as.numeric(
         -f(x0) %*% (x - x0) +  # Linear term
         -0.5 * t(x-x0) %*% J_symm %*% (x - x0) # Quadratic term
@@ -54,7 +54,7 @@ deltaV <- function(f, x, x0, normType='f') {
 
   # Use J_skew to estimate the relative error
   #
-  # Detailed information available at https://arxiv.org/abs/1903.05615
+  # Detailed information available at https://doi.org/10.1371/journal.pcbi.1007788
   rel_err <- norm(J_skew, type = normType)/(norm(J_skew, type = normType) + norm(J_symm, type = normType))
 
   # Return
