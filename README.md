@@ -14,7 +14,7 @@ For a detailed overview of the underlying ideas, please refer to:
 
 ## Getting started
 
-### Prerrequisites
+### Prerequisites
 This is an _R_ package. [_R_](https://www.r-project.org/) is required, [_RStudio_](https://rstudio.com/) is recommended.
 
 ### Installing
