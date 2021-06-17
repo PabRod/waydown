@@ -1,3 +1,4 @@
+[![CRAN](https://www.r-pkg.org/badges/version/waydown)](https://cran.r-project.org/web/packages/waydown/index.html)
 [![Build Status](https://github.com/PabRod/waydown/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/PabRod/waydown/actions)
 [![codecov](https://codecov.io/gh/PabRod/waydown/graph/badge.svg)](https://codecov.io/gh/PabRod/waydown)
 [![codecov](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
