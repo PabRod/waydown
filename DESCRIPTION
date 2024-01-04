@@ -14,6 +14,8 @@ Description: Computation of approximate potentials for both gradient and non
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/PabRod/waydown
+BugReports: https://github.com/PabRod/waydown/issues
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Suggests: testthat,
