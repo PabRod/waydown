@@ -3,7 +3,6 @@ title: "Examples of usage"
 author: "Pablo Rodríguez-Sánchez"
 date: "`r Sys.Date()`"
 output: 
-  pdf_document:
   html_document: default
 vignette: >
   %\VignetteIndexEntry{Examples of usage}
